@@ -1,0 +1,22 @@
+.btnGroup {
+  display: flex;
+  border: 1px solid darkgrey;
+}
+
+.btn {
+  border: 0;
+  padding: 7px 10px;
+  display: flex;
+}
+.btn:not(.btn:last-of-type) {
+  border-right: 1px solid darkgrey;
+}
+.btn:hover {
+  background-color: gray;
+  color: #fff;
+}
+.btn:focus {
+  background-color: dodgerblue;
+}
+
+/*# sourceMappingURL=ItemStatusFilter.module.css.map */

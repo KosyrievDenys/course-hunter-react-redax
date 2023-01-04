@@ -1,0 +1,11 @@
+ul {
+  max-width: 300px;
+  padding: 0;
+}
+
+span {
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+/*# sourceMappingURL=TodoList.module.css.map */
