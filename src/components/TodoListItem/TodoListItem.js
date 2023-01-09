@@ -1,7 +1,14 @@
 import React, { useState } from "react";
 import styles from './TodoListItem.module.scss';
 
-const TodoListItem = ({ label, onDeleted }) => {
+const TodoListItem = ({
+                        label,
+                        onDeleted,
+                        // onToggleImportant,
+                        // onToggleDone,
+                        // important,
+                        // done,
+                      }) => {
   const [done, setDone] = useState(false);
   const [important, setImportant] = useState(false);
   let classNames = `${styles.block}`;
@@ -12,9 +19,11 @@ const TodoListItem = ({ label, onDeleted }) => {
     classNames += ` ${styles.important}`;
   }
 
+
   return (
     <div className={classNames}>
-    <span onClick={() => setDone(!done)}>
+      {/*<span onClick={onToggleDone}>*/}
+      <span onClick={() => setDone(!done)}>
 {label}
     </span>
       <div className='buttons'>
@@ -28,6 +37,7 @@ const TodoListItem = ({ label, onDeleted }) => {
           type={'button'}
           className={styles.btn}
           onClick={() => setImportant(!important)}
+          // onClick={onToggleImportant}
         >!
         </button>
       </div>
