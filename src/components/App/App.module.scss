@@ -1,4 +1,9 @@
-
-.blockSearch{
-  display: flex;
+.app {
+  max-width: 400px;
+  .container{
+    padding: 0 20px;
+  }
+  .blockSearch {
+    display: flex;
+  }
 }

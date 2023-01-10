@@ -1,5 +1,15 @@
-
-.addItem{
-  padding: 7px 15px;
-  border: 1px solid gray;
+.itemAddForm {
+  .input{
+    border: 1px solid gray;
+    padding: 7px;
+    margin-right: 3px;
+    width: 271px;
+  }
+  .addItem {
+    padding: 7px 15px;
+    border:  1px solid gray;
+  }
+  button {
+    padding: 0;
+  }
 }

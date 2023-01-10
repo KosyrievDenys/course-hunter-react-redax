@@ -1,7 +1,8 @@
-input{
+.searchPanel{
   margin-right: 5px;
   padding: 5px;
   border: 1px solid darkgrey;
+  width: 211px;
   &:focus{
     border: 1px solid dodgerblue;
   }

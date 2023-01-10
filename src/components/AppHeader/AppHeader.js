@@ -3,7 +3,7 @@ import styles from './AppHeader.module.scss';
 
 function AppHeader({ toDo, done }) {
   return (
-    <div className={styles.header}>
+    <div className={styles.appHeader}>
       <h1>My Todo List</h1>
       <h2>{toDo} more to do, {done} done</h2>
     </div>

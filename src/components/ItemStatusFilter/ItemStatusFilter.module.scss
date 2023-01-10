@@ -1,19 +1,19 @@
-.btnGroup{
+.itemStatusFilter {
   display: flex;
-  border: 1px solid darkgrey;
-}
-.btn{
-  border: 0;
-  padding: 7px 10px;
-  display: flex;
-  &:not(.btn:last-of-type){
-    border-right: 1px solid darkgrey;
-  }
-  &:hover{
-    background-color: gray;
-    color: #fff;
-  }
-  &:focus{
-    background-color: dodgerblue;
+  border:  1px solid darkgrey;
+  .btn {
+    border:  0;
+    padding: 7px 10px;
+    display: flex;
+    &:not(.btn:last-of-type) {
+      border-right: 1px solid darkgrey;
+    }
+    &:hover {
+      background-color: gray;
+      color:            #fff;
+    }
+    &:focus {
+      background-color: dodgerblue;
+    }
   }
 }
