@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import styles from './TodoListItem.module.scss';
 
-const TodoListItem = ({
-                        label,
-                        onDeleted,
-                        onToggleImportant,
-                        onToggleDone,
-                        important,
-                        done,
-                      }) => {
+const TodoListItem = (
+  {
+    label,
+    onDeleted,
+    onToggleImportant,
+    onToggleDone,
+    important,
+    done,
+  }) => {
   let classNames = '';
   if (done) {
     classNames += ` ${styles.done}`;

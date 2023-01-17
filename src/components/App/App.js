@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from './App.module.scss';
 import TodoList from "../TodoList/TodoList";
 import AppHeader from "../AppHeader/AppHeader";
@@ -61,11 +61,12 @@ const App = () => {
     createTodoItem('Drink Coffee'),
     createTodoItem('Make Awesome App'),
     createTodoItem('Have a lunch'),
-    createTodoItem('church'),
-  ]
+    createTodoItem('church'),]
   const [arrTodoData, setArrTodoData] = useState(todoData);
-  const doneCount = arrTodoData.filter(el => el.done).length;
-  const todoCount = arrTodoData.length - doneCount;
+  const [term, setTerm] = useState('');
+  const [stFilter, setStFilter] = useState('all');
+  const [visibleItems, setVisibleItems] = useState([]);
+
   const toggleProperty = (arr, label, propName) => {
     const idx = arr.findIndex((el) => el.label === label)
     const oldItem = arr[idx];
@@ -75,30 +76,70 @@ const App = () => {
       newItem,
       ...arr.slice(idx + 1),
     ];
-    return {newArr};
+    return [...newArr];
   }
+  const onDeleted = (label) => {
+    const idx = arrTodoData.findIndex((el) => el.label === label);
+    const newArr = [
+      ...arrTodoData.slice(0, idx),
+      ...arrTodoData.slice(idx + 1),
+    ];
+    setArrTodoData(newArr);
+  }
+  const onSearchChange = (term) => {
+    setTerm(term);
+  }
+  const onFilterChange = (filter) => {
+    setStFilter(filter);
+  }
+  const search = (items, term) => {
+    if (term.length === 0) {return items}
+    return items.filter((item) => {
+      return item.label
+        .toLowerCase()
+        .indexOf(term.toLowerCase()) > -1;
+    })
+  }
+  // console.log(search())
+  const filter = (items, stFilter) => {
+    switch (stFilter) {
+      case 'all':
+        return items;
+      case 'active':
+        return items.filter((item) => !item.done);
+      case 'done':
+        return items.filter((item) => item.done);
+      default:
+        return items;
+    }
+  }
+
+  useEffect(() => {
+    // console.log(term)
+    setVisibleItems(filter(search(arrTodoData, term), stFilter));
+    // console.log(visibleItems)
+  }, [arrTodoData, stFilter, term])
+
   return (
     <div className={styles.app}>
       <div className={styles.container}>
-        <AppHeader toDo={todoCount} done={doneCount} />
+        <AppHeader arrTodoData={arrTodoData} />
         <div className={styles.blockSearch}>
-          <SearchPanel />
-          <ItemStatusFilter />
+          <SearchPanel
+            onSearchChangeApp={onSearchChange} />
+          <ItemStatusFilter
+          stFilter={stFilter}
+          onFilterChange={onFilterChange}/>
         </div>
-        <TodoList todos={arrTodoData}
-                  onDeleted={(label) => {
-                    const idx = arrTodoData.findIndex((el) => el.label === label);
-                    const newArr = [
-                      ...arrTodoData.slice(0, idx),
-                      ...arrTodoData.slice(idx + 1),
-                    ];
-                    setArrTodoData(newArr);
-                  }}
+        <TodoList todos={visibleItems}
+                  onDeleted={(label) => onDeleted(label)}
                   onToggleImportant={(label) => {
                     setArrTodoData(toggleProperty(arrTodoData, label, 'important'));
                   }}
                   onToggleDone={(label) => {
-                    setArrTodoData(toggleProperty(arrTodoData, label, 'done'));
+                    const newTodo = toggleProperty(arrTodoData, label, 'done')
+                    setArrTodoData([...newTodo]);
+
                   }} />
         <ItemAddForm onAddItem={(text) => {
           const newItem = createTodoItem(text);

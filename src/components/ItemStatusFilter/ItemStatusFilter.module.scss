@@ -12,7 +12,13 @@
       background-color: gray;
       color:            #fff;
     }
-    &:focus {
+    //&:focus {
+    //  background-color: dodgerblue;
+    //}
+    &OutlineSecondary {
+      background-color: #ccc;
+    }
+     &Info{
       background-color: dodgerblue;
     }
   }
