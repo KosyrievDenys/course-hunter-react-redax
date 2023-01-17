@@ -100,7 +100,6 @@ const App = () => {
         .indexOf(term.toLowerCase()) > -1;
     })
   }
-  // console.log(search())
   const filter = (items, stFilter) => {
     switch (stFilter) {
       case 'all':
@@ -115,9 +114,7 @@ const App = () => {
   }
 
   useEffect(() => {
-    // console.log(term)
     setVisibleItems(filter(search(arrTodoData, term), stFilter));
-    // console.log(visibleItems)
   }, [arrTodoData, stFilter, term])
 
   return (
@@ -139,7 +136,6 @@ const App = () => {
                   onToggleDone={(label) => {
                     const newTodo = toggleProperty(arrTodoData, label, 'done')
                     setArrTodoData([...newTodo]);
-
                   }} />
         <ItemAddForm onAddItem={(text) => {
           const newItem = createTodoItem(text);

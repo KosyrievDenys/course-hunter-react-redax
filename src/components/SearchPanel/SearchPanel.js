@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styles from './SearchPanel.module.scss';
 
 function SearchPanel({ onSearchChangeApp }) {
@@ -8,9 +8,6 @@ function SearchPanel({ onSearchChangeApp }) {
     const value = e.target.value;
     setTerm(value);
     onSearchChangeApp(value);
-    // useEffect(()=>{
-    //
-    // },[value])
   }
 
   return <input
